@@ -3,9 +3,8 @@ import time
 from datetime import datetime
 import pytz
 
-# Ваші дані
 BOT_TOKEN = '8182550137:AAEqkHikGqHcD9AqoVbm1YMtbvnXnDIWhnw'
-CHAT_ID = '-1003099609244'  # Новий ID супергрупи
+CHAT_ID = '-1003099609244'
 
 
 def send_message(chat_id, text):
@@ -17,7 +16,7 @@ def send_message(chat_id, text):
         payload = {
             'chat_id': chat_id,
             'text': text,
-            'parse_mode': 'HTML'  # Додаємо підтримку HTML форматування
+            'parse_mode': 'HTML'
         }
         response = requests.post(url, data=payload)
         return response.status_code == 200
@@ -65,13 +64,11 @@ def check_time_and_send():
 
     print(f"Перевірка часу: {current_time.strftime('%H:%M:%S')}")
 
-    # Для тестування - змініть на поточний час
-    if current_time.hour == 10 and current_time.minute == 0:  # О 10:00 ранку
+    if current_time.hour == 10 and current_time.minute == 0:  # 10:00
         print("Час співпав! Відправляю повідомлення...")
         send_morning_message()
 
-    # Додаткова перевірка для демонстрації роботи
-    if current_time.minute % 5 == 0:  # Кожні 5 хвилин для логування
+    if current_time.minute % 5 == 0: # Перевірка на живучість
         print(f"Бот працює. Наступна перевірка о 10:00")
 
 
@@ -85,7 +82,6 @@ def main():
     print("📍 ID групи:", CHAT_ID)
     print("=" * 60)
 
-    # Тестова відправка при запуску
     print("Відправляю тестове повідомлення...")
     test_message = "🤖 <b>Бот успішно запущений та працює!</b>\n✅ Готовий відправляти повідомлення щодня о 10:00"
     success = send_message(CHAT_ID, test_message)
@@ -100,11 +96,10 @@ def main():
     print("Для зупинки натисніть Ctrl+C")
     print("-" * 60)
 
-    # Головний цикл
     while True:
         try:
             check_time_and_send()
-            time.sleep(30)  # Перевіряємо кожні 30 секунд
+            time.sleep(30)  # перевірка часу на точність
         except KeyboardInterrupt:
             print("\n" + "=" * 60)
             print("🛑 Бот зупинено вручну!")
