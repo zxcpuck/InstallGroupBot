@@ -4,7 +4,7 @@ from datetime import datetime
 import pytz
 
 BOT_TOKEN = '8182550137:AAEqkHikGqHcD9AqoVbm1YMtbvnXnDIWhnw'
-CHAT_ID = '-1003099609244'
+CHAT_ID = '-4820418466'
 
 
 def send_message(chat_id, text):
