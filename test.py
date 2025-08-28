@@ -5,6 +5,7 @@ import pytz
 
 BOT_TOKEN = '8182550137:AAEqkHikGqHcD9AqoVbm1YMtbvnXnDIWhnw'
 CHAT_ID = '-4820418466'
+ADMIN_USER_ID = '1055940599'
 
 
 def send_message(chat_id, text):
@@ -84,7 +85,7 @@ def main():
 
     print("Відправляю тестове повідомлення...")
     test_message = "🤖 <b>Бот успішно запущений та працює!</b>\n✅ Готовий відправляти повідомлення щодня о 10:00"
-    success = send_message(CHAT_ID, test_message)
+    success = send_message(ADMIN_USER_ID, test_message)
 
     if success:
         print("✅ Тестове повідомлення успішно відправлено!")
