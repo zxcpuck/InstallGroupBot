@@ -7,7 +7,6 @@ BOT_TOKEN = '8182550137:AAEqkHikGqHcD9AqoVbm1YMtbvnXnDIWhnw'
 CHAT_ID = '-4820418466'
 ADMIN_USER_ID = '1055940599'
 
-# Глобальна змінна для відстеження відправки
 last_sent_date = None
 
 
@@ -67,21 +66,18 @@ def check_time_and_send():
 
     kiev_tz = pytz.timezone('Europe/Kiev')
     current_time = datetime.now(kiev_tz)
-    today_date = current_time.date()  # Поточна дата без часу
+    today_date = current_time.date()
 
     print(f"Перевірка часу: {current_time.strftime('%H:%M:%S')}")
 
-    # Перевіряємо чи зараз 10:00 і чи ще не відправляли сьогодні
     if current_time.hour == 11 and current_time.minute == 54:
         if last_sent_date != today_date:
             print("Час співпав! Відправляю повідомлення...")
             if send_morning_message():
-                last_sent_date = today_date  # Оновлюємо дату останньої відправки
+                last_sent_date = today_date
         else:
             print("Повідомлення сьогодні вже було відправлено")
     elif current_time.hour != 10:
-        # Скидаємо last_sent_date якщо вже не 10 година
-        # Це дозволить відправляти знову наступного дня
         last_sent_date = None
 
     if current_time.minute % 5 == 0:  # Перевірка на живучість
